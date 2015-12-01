@@ -200,7 +200,7 @@ class WP_Term_Meta_UI {
 		$tag = "wp_term_{$this->meta_key}_get_taxonomies";
 
 		/**
-		 * Allow filtering of affected taxonomies
+		 * Allow filtering of affected taxonomy arguments
 		 *
 		 * @since 0.1.3
 		 */
@@ -212,7 +212,12 @@ class WP_Term_Meta_UI {
 		$r = wp_parse_args( $args, $defaults );
 
 		// Get & return the taxonomies
-		return get_taxonomies( $r );
+		/**
+		 * Allow filtering of affected taxonomy values.
+		 *
+		 * @since
+		 */
+		return apply_filters( $tag . '_values', get_taxonomies( $r ) );
 	}
 
 	/** Columns ***************************************************************/
